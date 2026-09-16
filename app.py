@@ -20,6 +20,12 @@ def procesa ():
         session.modified = True
     return redirect(url_for("carrito"))
     
+@app.route ("/vaciar",methods =["GET"])
+def vaciar():
+    session.pop("lista",None)
+    return redirect(url_for("carrito"))
+
+
     
 if __name__ =="__main__":
     app.run(debug=True)
