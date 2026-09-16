@@ -12,6 +12,14 @@ def carrito ():
     return render_template('index.html',lista = session['lista'])
 
     
+@app.route("/proceso",methods=['GET','POST'])
+def procesa ():
+    producto = request.form.get("producto")
+    if 'lista' in session and producto:
+        session['lista'].append(producto)
+        session.modified = True
+    return redirect(url_for("carrito"))
+    
     
 if __name__ =="__main__":
     app.run(debug=True)
